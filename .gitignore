@@ -1,0 +1,133 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Django stuff:
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+*.db
+*.env
+*.local_settings.py
+
+# If your static files are compiled and stored locally
+/media/
+media/
+/media
+# If you use static files generated during build process, ignore it.
+# E.g., some node_modules files compiled for a JS framework
+node_modules/
+
+# Python environment files
+env/
+venv/
+ENV/
+.venv/
+.ENV/
+
+# VS Code configuration files
+.vscode/
+.vscode
+
+# PyCharm
+.idea/
+
+# Pycharm specific
+*.idea/
+
+# Coverage reports
+htmlcov/
+.tox/
+.nox/
+
+# virtualenv
+.Python
+venv/
+ENV/
+env/
+.env
+*.env
+
+# pipenv
+Pipfile.lock
+
+# dotenv
+.env
+*.env
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# pyre
+.pyre/
+
+# pytype
+.pytype/
+
+# test results
+coverage/
+coverage.xml
+
+# SQL
+*.sql
+
+# macOS
+.DS_Store
+
+# Thumbnails
+*_thumb.*
+
+# Translations
+*.mo
+*.pot
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Unit test / coverage reports
+coverage/
+.tox/
+.nox/
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+nosetests.xml
+test-results/
+junit/
+
+# django-extensions stuff
+*.out
+*.log
+
+# Sphinx documentation
+docs/_build/
+
+# pyenv
+.python-version
+
+# celery beat schedule file
+celerybeat-schedule
+
+# IDE specific
+.idea/
+.vscode/
+
+# Migrations
+*/migrations/*.py
+*/migrations/*.pyc
+!**/migrations/__init__.py
+
+# Django settings files
+# local_settings.py
+
+# master/migrations/
+# project/migrations/
+# core/settings
+db.sqlite3
