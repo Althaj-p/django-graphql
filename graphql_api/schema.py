@@ -131,6 +131,7 @@ class CategoryForm(forms.ModelForm):
     #         raise forms.ValidationError(f"Category '{name}' already exists")
     #     return name
 
+
 # class CategoryMutation(DjangoModelFormMutation):
 #     class Meta:
 #         form_class = CategoryForm
@@ -139,6 +140,7 @@ class ErrorType(graphene.ObjectType):
     field = graphene.String()
     messages = graphene.List(graphene.String)
 
+#-----------------apply validations through forms-------------------
 # class CategoryMutation(DjangoModelFormMutation):
 #     errors = graphene.List(ErrorType)
 #     category = graphene.Field(lambda: CategoryNode)
@@ -158,18 +160,20 @@ class ErrorType(graphene.ObjectType):
 #                 for field, messages in form.errors.items()
 #             ]
 #             return cls(errors=errors, category=None)
+
+#--------------------Apply validations in mutations-------------------
 class CategoryMutation(DjangoModelFormMutation):
     errors = graphene.List(ErrorType)
     category = graphene.Field(lambda: CategoryNode)
 
     class Meta:
-        form_class = CategoryForm  # ✅ still required to bind input to model fields
+        form_class = CategoryForm  #still required to bind input to model fields
 
     @classmethod
     def perform_mutate(cls, form, info):
         name = form.data.get('name', '').strip()
 
-        # ✅ Custom mutation-level validations
+        #Custom mutation-level validations
         if not name:
             return cls(
                 errors=[ErrorType(field='name', messages=["Name cannot be empty"])],
@@ -181,10 +185,19 @@ class CategoryMutation(DjangoModelFormMutation):
                 category=None,
             )
 
-        # ✅ Create and return object
+        #Create and return object
         category = form.save(commit=False)
         category.save()
         return cls(category=category, errors=[])
+
+from graphene_django.rest_framework.mutation import SerializerMutation
+from .serializers import CategorySerializer
+
+class CategoryMutation(SerializerMutation):
+    class Meta:
+        serializer_class = CategorySerializer
+        model_operations = ['create', 'update']  # optional
+        lookup_field = 'id'                      # optional
 
 
 class Mutation(ObjectType):
